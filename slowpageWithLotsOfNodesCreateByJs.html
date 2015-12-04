@@ -1,0 +1,77 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>测试</title>  
+<style type="text/css">
+    .grey{
+        background-color: grey;
+        transform:translate3d(0,0,0);
+        transform:translate3d(0,0,0);
+    }
+    .black{
+        background-color: rgba(0,0,0,0.1);
+        width: 100px;
+        height: 1px;
+        float: left;
+    }
+</style>
+</head>  
+ 
+<body>
+    <div class="grey" id='main'>
+   <!--  </div> -->
+<script type="text/javascript">
+    var main = document.getElementById('main');
+    var div = document.createElement('div');
+
+    div.className='black';
+    //第一种方式，一次一次插入
+    for(var i = 0;i < 1000000;i++){
+        main.appendChild(div.cloneNode());
+       
+    }
+
+    //第二种，延迟加载
+    /*for(var i = 0;i < 1000;i++){
+        setTimeout(function(){
+            for(var j = 0;j < 1000; j++ )
+            main.appendChild(div.cloneNode());
+        },10 + i);
+    }*/
+
+
+    /*合并插入一*/
+    /*var frag = document.createDocumentFragment();
+    for(var i = 0;i < 1000000;i++){
+        
+        frag.appendChild(div.cloneNode());
+    }
+    main.appendChild(frag);*/
+
+    /*合并插入二*/
+    /*var str = '<div class="black"></div>';
+    var sumStr = '';
+    for(var i = 0;i < 1000000;i++){
+        
+        sumStr += str;
+    }
+    main.innerHTML  = sumStr;*/
+
+    /*合并插入+延迟加载*/
+    /*for(var i = 0;i < 1000;i++){
+        setTimeout(function(){
+            var str = '<div class="black"></div>';
+            var sumStr = '';
+            for(var i = 0;i < 1000;i++){
+        
+            sumStr += str;
+            }
+            main.innerHTML  += sumStr;
+        },10 + i);
+    }*/
+    console.log(document.getElementsByTagName('div').length);
+</script>
+
+</body>
+</html>
